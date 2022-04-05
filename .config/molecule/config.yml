@@ -1,0 +1,42 @@
+---
+scenario:
+  test_sequence:
+    - lint
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - verify
+    - destroy
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+provisioner:
+  name: ansible
+  config_options:
+    _shareds:
+      deprecation_warnings: false
+      callback_whitelist: timer,profile_tasks
+      fact_caching: jsonfile
+      fact_caching_connection: ./cache
+      forks: 100
+    connection:
+      pipelining: true
+  playbooks:
+    prepare: ../_shared/prepare.yml
+    converge: ../_shared/converge.yml
+  inventory:
+    group_vars:
+      all:
+        vault_install_hashi_repo: true
+        vault_bin_path: /usr/bin
+      consul_instances:
+        consul_node_role: bootstrap
+verifier:
+  name: ansible
