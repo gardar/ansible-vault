@@ -7,31 +7,43 @@ on:
       - '*'
   pull_request:
 
+env:
+  ANSIBLE_FORCE_COLOR: '1'
+  PY_COLORS: '1'
+
 jobs:
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        scenario:
+          - default
     steps:
       - name: checkout
         uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
       - name: molecule
-        uses: robertdebock/molecule-action@2.6.8
+        uses: gofrolist/molecule-action@v2
         with:
-          command: lint
+          molecule_command: lint
+          molecule_args: --scenario-name ${{ matrix.scenario }}
   test:
     needs:
       - lint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        scenario:
+          - default
     steps:
       - name: checkout
         uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
       - name: molecule
-        uses: robertdebock/molecule-action@2.6.8
+        uses: gofrolist/molecule-action@v2
         with:
-          image: ${{ matrix.config.image }}
-          tag: ${{ matrix.config.tag }}
+          molecule_command: test
+          molecule_args: --scenario-name ${{ matrix.scenario }}

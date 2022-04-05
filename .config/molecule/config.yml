@@ -20,7 +20,7 @@ lint: |
 provisioner:
   name: ansible
   config_options:
-    _shareds:
+    defaults:
       deprecation_warnings: false
       callback_whitelist: timer,profile_tasks
       fact_caching: jsonfile
