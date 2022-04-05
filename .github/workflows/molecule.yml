@@ -37,6 +37,7 @@ jobs:
       matrix:
         scenario:
           - default
+          - centos-7
     steps:
       - name: checkout
         uses: actions/checkout@v2

@@ -1,14 +1,4 @@
 ---
-scenario:
-  test_sequence:
-    - lint
-    - syntax
-    - create
-    - prepare
-    - converge
-    - idempotence
-    - verify
-    - destroy
 dependency:
   name: galaxy
 driver:
@@ -21,7 +11,6 @@ provisioner:
   name: ansible
   config_options:
     defaults:
-      deprecation_warnings: false
       callback_whitelist: timer,profile_tasks
       fact_caching: jsonfile
       fact_caching_connection: ./cache
@@ -31,12 +20,5 @@ provisioner:
   playbooks:
     prepare: ../_shared/prepare.yml
     converge: ../_shared/converge.yml
-  inventory:
-    group_vars:
-      all:
-        vault_install_hashi_repo: true
-        vault_bin_path: /usr/bin
-      consul_instances:
-        consul_node_role: bootstrap
 verifier:
   name: ansible
