@@ -5,6 +5,7 @@ platforms:
       - vault_raft_servers
     image: dokken/centos-7
     dockerfile: ../_shared/Dockerfile.j2
+    privileged: true
     capabilities:
       - SYS_ADMIN
       - CAP_IPC_LOCK
@@ -15,6 +16,7 @@ platforms:
       - vault_raft_servers
     image: dokken/centos-7
     dockerfile: ../_shared/Dockerfile.j2
+    privileged: true
     capabilities:
       - SYS_ADMIN
       - CAP_IPC_LOCK
