@@ -1,0 +1,31 @@
+---
+platforms:
+  - name: ubuntu-18.04
+    groups:
+      - vault_raft_servers
+    image: dokken/ubuntu-18.04
+    dockerfile: ../_shared/Dockerfile.j2
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: ubuntu-18.04_repo
+    groups:
+      - vault_raft_servers
+    image: dokken/ubuntu-18.04
+    dockerfile: ../_shared/Dockerfile.j2
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+provisioner:
+  inventory:
+    host_vars:
+      ubuntu-18.04_repo:
+        vault_install_hashi_repo: true
+        vault_bin_path: /usr/bin
