@@ -1,6 +1,8 @@
 ---
 platforms:
   - name: centos-7
+    groups:
+      - vault_raft_servers
     image: dokken/centos-7
     dockerfile: ../_shared/Dockerfile.j2
     capabilities:
@@ -8,6 +10,8 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: centos-7_repo
+    groups:
+      - vault_raft_servers
     image: dokken/centos-7
     dockerfile: ../_shared/Dockerfile.j2
     capabilities:
