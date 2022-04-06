@@ -3,7 +3,7 @@ platforms:
   - name: centos-7
     groups:
       - vault_raft_servers
-    image: dokken/centos-7
+    image: milcom/centos7-systemd
     dockerfile: ../_shared/Dockerfile.j2
     privileged: true
     capabilities:
@@ -14,7 +14,7 @@ platforms:
   - name: centos-7_repo
     groups:
       - vault_raft_servers
-    image: dokken/centos-7
+    image: milcom/centos7-systemd
     dockerfile: ../_shared/Dockerfile.j2
     privileged: true
     capabilities:
