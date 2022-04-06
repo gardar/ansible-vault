@@ -1,0 +1,23 @@
+---
+platforms:
+  - name: centos-7
+    image: dokken/centos-7
+    dockerfile: ../_shared/Dockerfile.j2
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: centos-7_repo
+    image: dokken/centos-7
+    dockerfile: ../_shared/Dockerfile.j2
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+provisioner:
+  inventory:
+    host_vars:
+      centos-7_repo:
+        vault_install_hashi_repo: true
+        vault_bin_path: /usr/bin
