@@ -33,6 +33,9 @@
   debug:
     msg:
       - "vault_sha256: {{ vault_sha256 }}"
+      - 'vault_sha256 not var: {{ (lookup("url", vault_checksum_file_url, wantlist=true) | select("match", ".*" + vault_pkg + "$") | first).split()[0] }}'
+      - "vault_checksum_file_url: {{ vault_checksum_file_url }}"
+      - "vault_pkg: {{ vault_pkg }}"
   vars:
     vault_sha256: '{{ (lookup("url", vault_checksum_file_url, wantlist=true) | select("match", ".*" + vault_pkg + "$") | first).split()[0] }}'
 
