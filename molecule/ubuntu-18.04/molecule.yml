@@ -5,6 +5,7 @@ platforms:
       - vault_raft_servers
     image: dokken/ubuntu-18.04
     dockerfile: ../_shared/Dockerfile.j2
+    command: /lib/systemd/systemd
     privileged: true
     capabilities:
       - SYS_ADMIN
@@ -16,6 +17,7 @@ platforms:
       - vault_raft_servers
     image: dokken/ubuntu-18.04
     dockerfile: ../_shared/Dockerfile.j2
+    command: /lib/systemd/systemd
     privileged: true
     capabilities:
       - SYS_ADMIN
