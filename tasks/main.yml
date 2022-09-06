@@ -32,15 +32,13 @@
         - vars
 
 - name: Check Vault installation
-  shell: command -v vault
+  shell: command -v vault  # noqa command-instead-of-shell  # command is a shell builtin
   environment:
     PATH: "{{ vault_bin_path }}:{{ ansible_env.PATH }}"
   register: vault_installation
   changed_when: false
   ignore_errors: true
   check_mode: false
-  tags:
-    - skip_ansible_lint  # command is a shell builtin
 
 - name: Get installed Vault version
   shell: |
@@ -248,7 +246,7 @@
     - not ansible_os_family == "FreeBSD"
     - not ansible_os_family == "Solaris"
 
-- name: extract systemd version
+- name: Extract systemd version
   shell: |
     set -o pipefail
     systemctl --version systemd | head -n 1 | cut -d' ' -f2
@@ -263,7 +261,7 @@
     - not ansible_os_family == "Solaris"
   tags: skip_ansible_lint
 
-- name: systemd unit
+- name: Systemd unit
   become: true
   template:
     src: "{{ vault_systemd_template }}"
@@ -279,7 +277,7 @@
     - not ansible_os_family == "Solaris"
     - systemd_version is defined
 
-- name: reload systemd
+- name: Reload systemd
   become: true
   systemd:
     daemon-reload: true
@@ -374,7 +372,7 @@
 
 - name: Vault status
   debug:
-    msg: "Vault is {{ vault_http_status[check_result.status|string] }}"
+    msg: "Vault is {{ vault_http_status[check_result.status | string] }}"
   tags:
     - check_vault
   when:

@@ -25,12 +25,16 @@
   get_url:
     url: "{{ vault_checksum_file_url }}"
     dest: "/tmp/vault/{{ vault_shasums }}"
+    mode: 0644
   tags: installation
   when: not vault_checksum.stat.exists | bool
 
 - name: Get Vault package checksum
-  shell: "grep {{ vault_pkg }} /tmp/vault/{{ vault_shasums }}"
+  shell: |
+    set -o pipefail
+    grep "{{ vault_pkg }}" "/tmp/vault/{{ vault_shasums }}"
   register: vault_sha256
+  changed_when: false
   tags:
     - installation
     - skip_ansible_lint
@@ -45,8 +49,9 @@
   get_url:
     url: "{{ vault_zip_url }}"
     dest: "/tmp/vault/{{ vault_pkg }}"
-    checksum: "sha256:{{ vault_sha256.stdout.split(' ')|first }}"
+    checksum: "sha256:{{ vault_sha256.stdout.split(' ') | first }}"
     timeout: "42"
+    mode: 0644
   tags: installation
   when: not vault_package.stat.exists | bool
 

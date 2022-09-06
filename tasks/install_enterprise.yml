@@ -24,6 +24,7 @@
     executable: /bin/bash
   become: false
   run_once: true
+  changed_when: false
   register: vault_sha256
   tags:
     - installation
@@ -44,6 +45,7 @@
     dest: "{{ role_path }}/files/{{ vault_enterprise_pkg }}"
     checksum: sha256:{{ vault_sha256.stdout }}
     timeout: 42
+    mode: 0644
   become: false
   run_once: true
   tags: installation
