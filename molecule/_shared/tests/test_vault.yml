@@ -1,7 +1,4 @@
 ---
-package:
-  vault:
-    installed: true
 port:
   tcp:8200:
     listening: true
