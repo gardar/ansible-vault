@@ -1,9 +1,9 @@
 ---
 platforms:
-  - name: centos-8-stream
+  - name: centos-stream-8
     groups:
       - vault_raft_servers
-    image: dokken/centos-8-stream
+    image: dokken/centos-stream-8
     dockerfile: ../_shared/Dockerfile.j2
     command: /lib/systemd/systemd
     privileged: true
@@ -12,10 +12,10 @@ platforms:
       - CAP_IPC_LOCK
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: centos-8-stream_repo
+  - name: centos-stream-8_repo
     groups:
       - vault_raft_servers
-    image: dokken/centos-8-stream
+    image: dokken/centos-stream-8
     dockerfile: ../_shared/Dockerfile.j2
     command: /lib/systemd/systemd
     privileged: true
@@ -28,6 +28,6 @@ platforms:
 provisioner:
   inventory:
     host_vars:
-      centos-8-stream_repo:
+      centos-stream-8_repo:
         vault_install_hashi_repo: true
         vault_bin_path: /usr/bin
