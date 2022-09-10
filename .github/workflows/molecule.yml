@@ -33,7 +33,8 @@ jobs:
       - discover-scenarios
     strategy:
       matrix:
-        scenario: ${{ fromJson(needs.discover-scenarios.outputs.scenarios)[0] }}
+        scenario:
+          - ${{ fromJson(needs.discover-scenarios.outputs.scenarios)[0] }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
