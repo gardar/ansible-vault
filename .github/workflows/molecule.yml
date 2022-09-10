@@ -12,12 +12,28 @@ env:
   PY_COLORS: '1'
 
 jobs:
+  discover-scenarios:
+    runs-on: ubuntu-latest
+    outputs:
+      scenarios: ${{ steps.set-scenarios.outputs.scenarios }}
+    steps:
+      - name: Check out codebase
+        uses: actions/checkout@v3
+
+      - name: Discover scenarios
+        id: set-scenarios
+        # Find path to all scenarios
+        run: |
+          export scenarios="[`for x in $(ls -1 molecule -I _shared); do echo "'$x'"; done | tr '\n' ',' | sed '$s/,$//'`]"
+          echo "::set-output name=scenarios::$scenarios"
+
   lint:
     runs-on: ubuntu-latest
+    needs:
+      - discover-scenarios
     strategy:
       matrix:
-        scenario:
-          - ubuntu-18.04
+        scenario: ${{ fromJson(needs.discover-scenarios.outputs.scenarios)[0] }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -29,13 +45,12 @@ jobs:
   test:
     needs:
       - lint
+      - discover-scenarios
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        scenario:
-          - ubuntu-18.04
-          - centos-7
+        scenario: ${{ fromJson(needs.discover-scenarios.outputs.scenarios) }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
