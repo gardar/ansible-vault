@@ -1,0 +1,33 @@
+---
+platforms:
+  - name: debian-9
+    groups:
+      - vault_raft_servers
+    image: dokken/debian-9
+    dockerfile: ../_shared/Dockerfile.j2
+    command: /lib/systemd/systemd
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: debian-9_repo
+    groups:
+      - vault_raft_servers
+    image: dokken/debian-9
+    dockerfile: ../_shared/Dockerfile.j2
+    command: /lib/systemd/systemd
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+provisioner:
+  inventory:
+    host_vars:
+      debian-9_repo:
+        vault_install_hashi_repo: true
+        vault_bin_path: /usr/bin
