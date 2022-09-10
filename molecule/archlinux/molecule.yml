@@ -1,0 +1,33 @@
+---
+platforms:
+  - name: archlinux
+    groups:
+      - vault_raft_servers
+    image: carlodepieri/docker-archlinux-ansible
+    dockerfile: ../_shared/Dockerfile.j2
+    command: /lib/systemd/systemd
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: archlinux_repo
+    groups:
+      - vault_raft_servers
+    image: carlodepieri/docker-archlinux-ansible
+    dockerfile: ../_shared/Dockerfile.j2
+    command: /lib/systemd/systemd
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+provisioner:
+  inventory:
+    host_vars:
+      archlinux_repo:
+        vault_install_hashi_repo: true
+        vault_bin_path: /usr/bin
