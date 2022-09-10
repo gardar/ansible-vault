@@ -45,8 +45,6 @@
     set -o pipefail
     grep "{{ vault_pkg }}" "{{ role_path }}/files/{{ vault_shasums }}" | \
     awk '{print $1}'
-  args:
-    executable: /bin/bash
   changed_when: false
   become: false
   run_once: true
