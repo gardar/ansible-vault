@@ -5,7 +5,7 @@
 
   tasks:
     - name: Add Software Collections Repository
-      raw: yum install -y centos-release-sc
+      raw: yum install -y centos-release-scl
       changed_when: false
 
     - name: Install python 3.6
