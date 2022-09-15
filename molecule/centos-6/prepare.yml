@@ -29,6 +29,6 @@
             's/^#\s\?baseurl=http:\/\/mirror.centos.org\/centos\/\($releasever\|6\)\//baseurl=http:\/\/vault.centos.org\/6.10\//g' /etc/yum.repos.d/*.repo
       changed_when: false
 
-    - name: Install python 3.6
-      raw: yum install -y rh-python36
+    - name: Install python 2.7
+      raw: yum install -y python27
       changed_when: false
