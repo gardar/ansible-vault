@@ -25,7 +25,12 @@ platforms:
 
 provisioner:
   inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /opt/rh/rh-python36/bin/python
     host_vars:
       centos-6_repo:
         vault_install_hashi_repo: true
         vault_bin_path: /usr/bin
+  playbooks:
+    prepare: prepare.yml
