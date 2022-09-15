@@ -8,6 +8,7 @@
         name:
           - sudo
           - unzip
+          - tar
         state: present
 
     - name: Install netaddr dependency on controlling host
