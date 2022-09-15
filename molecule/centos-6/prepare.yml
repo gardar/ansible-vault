@@ -8,6 +8,10 @@
       raw: yum install -y centos-release-scl
       changed_when: false
 
+    - name: Fix EOL CentOS 6 mirrors
+      raw: sed -i -e 's/mirror.centos.org\/centos\/\$releasever/mirrors.vcea.wsu.edu\/centos-vault\/6.10/g' /etc/yum.repos.d/*.repo
+      changed_when: false
+
     - name: Install python 3.6
       raw: yum install -y rh-python36
       changed_when: false
