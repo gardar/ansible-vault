@@ -33,10 +33,8 @@
       raw: yum install -y python27
       changed_when: false
 
-    - name: Install scl ansible_python_interpreter wrapper
-      raw: printf '%s\n' '#/bin/bash' '/opt/rh/python27/enable' 'exec python "$@"' > /usr/local/bin/ansible_python27
-      changed_when: false
-
-    - name: Set permissions of scl ansible_python_interpreter wrapper
-      raw: chmod +x /usr/local/bin/ansible_python27
+    - name: Install scl ansible_python_interpreter wrapper  # noqa deprecated-command-syntax
+      raw: |
+        printf '%s\n' '#/bin/bash' '/opt/rh/python27/enable' 'exec python "$@"' > /usr/local/bin/ansible_python27
+        chmod +x /usr/local/bin/ansible_python27
       changed_when: false
