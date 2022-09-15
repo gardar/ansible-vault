@@ -12,7 +12,7 @@
   fail:
     msg: "{{ ansible_distribution_version }} is not a supported version of {{ ansible_distribution }} for this role"
   when:
-    - ansible_os_family == RedHat
+    - ansible_os_family == 'RedHat'
     - ansible_distribution_version is version(6, '<')
 
 - name: Fail if not a new release of Debian
