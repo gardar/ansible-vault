@@ -5,7 +5,9 @@
   tasks:
     - name: Install prerequisites
       package:
-        name: sudo
+        name:
+          - sudo
+          - unzip
         state: present
 
     - name: Install netaddr dependency on controlling host
