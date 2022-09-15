@@ -17,6 +17,13 @@
       raw: yum install -y rh-python36
       changed_when: false
 
+    - name: Install OS packages on controlling host
+      when: ansible_distribution != 'MacOSX'
+      package:
+        name: unzip
+      become: true
+      delegate_to: localhost
+
     - name: Install netaddr dependency on controlling host
       pip:
         name: netaddr

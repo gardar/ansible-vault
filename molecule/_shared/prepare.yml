@@ -4,7 +4,7 @@
   connection: local
 
   tasks:
-    - name: Install OS packages
+    - name: Install OS packages on controlling host
       when: ansible_distribution != 'MacOSX'
       package:
         name: unzip

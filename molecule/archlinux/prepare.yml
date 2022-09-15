@@ -11,6 +11,13 @@
           - tar
         state: present
 
+    - name: Install OS packages on controlling host
+      when: ansible_distribution != 'MacOSX'
+      package:
+        name: unzip
+      become: true
+      delegate_to: localhost
+
     - name: Install netaddr dependency on controlling host
       pip:
         name: netaddr
