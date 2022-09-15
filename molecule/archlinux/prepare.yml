@@ -1,0 +1,15 @@
+---
+- name: Prepare
+  hosts: all
+
+  tasks:
+    - name: Install prerequisites
+      package:
+        name: sudo
+        state: present
+
+    - name: Install netaddr dependency on controlling host
+      pip:
+        name: netaddr
+      become: false
+      delegate_to: localhost
