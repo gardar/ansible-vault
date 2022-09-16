@@ -1,0 +1,31 @@
+---
+platforms:
+  - name: debian-8
+    groups:
+      - vault_raft_servers
+    image: dokken/debian-8
+    command: /lib/systemd/systemd
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: debian-8_repo
+    groups:
+      - vault_raft_servers
+    image: dokken/debian-8
+    command: /lib/systemd/systemd
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+provisioner:
+  inventory:
+    host_vars:
+      debian-8_repo:
+        vault_install_hashi_repo: true
+        vault_bin_path: /usr/bin
