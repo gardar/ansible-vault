@@ -4,7 +4,6 @@ platforms:
     groups:
       - vault_raft_servers
     image: milcom/centos7-systemd
-    dockerfile: ../_shared/Dockerfile.j2
     privileged: true
     capabilities:
       - SYS_ADMIN
@@ -15,7 +14,6 @@ platforms:
     groups:
       - vault_raft_servers
     image: milcom/centos7-systemd
-    dockerfile: ../_shared/Dockerfile.j2
     privileged: true
     capabilities:
       - SYS_ADMIN

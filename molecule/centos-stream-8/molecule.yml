@@ -4,7 +4,6 @@ platforms:
     groups:
       - vault_raft_servers
     image: dokken/centos-stream-8
-    dockerfile: ../_shared/Dockerfile.j2
     command: /lib/systemd/systemd
     privileged: true
     capabilities:
@@ -16,7 +15,6 @@ platforms:
     groups:
       - vault_raft_servers
     image: dokken/centos-stream-8
-    dockerfile: ../_shared/Dockerfile.j2
     command: /lib/systemd/systemd
     privileged: true
     capabilities:
