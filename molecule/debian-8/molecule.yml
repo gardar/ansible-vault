@@ -25,6 +25,9 @@ platforms:
 
 provisioner:
   inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /usr/bin/python2.7
     host_vars:
       debian-8_repo:
         vault_install_hashi_repo: true
