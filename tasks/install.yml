@@ -2,6 +2,7 @@
 # File: tasks/install.yml - package installation tasks for vault
 
 - name: OS packages
+  become: true
   package:
     name: "{{ vault_os_packages }}"
     state: present
