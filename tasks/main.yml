@@ -1,5 +1,27 @@
 ---
 # File: tasks/main.yml - Main tasks for Vault
+- name: Debug python version
+  command:
+    cmd: python --version
+  changed_when: false
+  ignore_errors: true
+  register: target_python
+
+- name: Debug python version localhost
+  command:
+    cmd: python --version
+  changed_when: false
+  delegate_to: localhost
+  ignore_errors: true
+  register: local_python
+
+- name: Debug python (target)
+  debug:
+    msg: "{{ target_python }}"
+
+- name: Debug python (local)
+  debug:
+    msg: " local python: {{ local_python }}"
 
 - name: Include asserts
   include: asserts.yml
