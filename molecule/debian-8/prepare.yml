@@ -23,4 +23,5 @@
       package:
         name:
           - python2.7
+          - python-apt
         state: present
