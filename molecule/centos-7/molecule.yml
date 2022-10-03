@@ -3,7 +3,7 @@ platforms:
   - name: centos-7
     groups:
       - vault_raft_servers
-    image: milcom/centos7-systemd
+    image: dokken/centos-7
     pre_build_image: true
     privileged: true
     capabilities:
@@ -14,7 +14,7 @@ platforms:
   - name: centos-7_repo
     groups:
       - vault_raft_servers
-    image: milcom/centos7-systemd
+    image: dokken/centos-7
     pre_build_image: true
     privileged: true
     capabilities:
