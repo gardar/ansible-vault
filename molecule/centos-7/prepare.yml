@@ -34,7 +34,7 @@
         repo_gpgcheck: false
         enabled: true
 
-    - name: Install prerequisites
+    - name: Update systemd  # noqa package-latest
       package:
         name: systemd
-        state: present
+        state: latest
