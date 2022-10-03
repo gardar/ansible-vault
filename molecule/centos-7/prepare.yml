@@ -23,7 +23,7 @@
 
   tasks:
     - name: Add systemd-backports repo
-      copr:
+      community.general.copr:
         name: jsynacek/systemd-backports-for-centos-7
 
     - name: Update systemd
