@@ -22,8 +22,11 @@
   hosts: all
 
   tasks:
-    - name: Install prerequisites
+    - name: Add systemd-backports repo
+      copr:
+        name: jsynacek/systemd-backports-for-centos-7
+
+    - name: Update systemd
       package:
-        name:
-          - sudo
-        state: present
+        name: systemd
+        state: latest
