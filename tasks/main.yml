@@ -24,7 +24,7 @@
     msg: " local python: {{ local_python }}"
 
 - name: Include asserts
-  include: asserts.yml
+  include_tasks: asserts.yml
 
 - name: Add Vault group
   become: true
@@ -78,7 +78,7 @@
     installation_required: "{{ vault_installation is failed or installed_vault_version.stdout != vault_version }}"
 
 - name: Install OS packages and Vault Enterprise via control host
-  include: install_enterprise.yml
+  include_tasks: install_enterprise.yml
   when:
     - vault_enterprise | bool
     - not vault_install_remotely | bool
@@ -86,7 +86,7 @@
     - installation_required | bool
 
 - name: Install OS packages and Vault via control host
-  include: install.yml
+  include_tasks: install.yml
   when:
     - not vault_enterprise | bool
     - not vault_install_remotely | bool
@@ -94,7 +94,7 @@
     - installation_required | bool
 
 - name: Install Vault via HashiCorp repository
-  include: install_hashi_repo.yml
+  include_tasks: install_hashi_repo.yml
   when:
     - not vault_enterprise | bool
     - not vault_install_remotely | bool
@@ -102,7 +102,7 @@
     - installation_required | bool
 
 - name: Install OS packages and Vault via remote hosts
-  include: install_remote.yml
+  include_tasks: install_remote.yml
   when:
     - not vault_enterprise | bool
     - vault_install_remotely | bool
@@ -152,11 +152,11 @@
   when: vault_enable_logrotate | bool
 
 - name: TLS configuration
-  include: ../tasks/tls.yml
+  include_tasks: ../tasks/tls.yml
   when: vault_tls_disable == 0
 
 - name: Backend storage TLS configuration
-  include: ../tasks/backend_tls.yml
+  include_tasks: ../tasks/backend_tls.yml
   when: vault_tls_gossip == 1
 
 - name: "Copy over GCP Credentials for Auto Unseal"
@@ -319,7 +319,7 @@
     enabled: true
   register: start_vault
 
-- name: Pause for {{ vault_start_pause_seconds }} seconds to let Vault startup correctly
+- name: Pause to let Vault startup correctly
   pause:
     seconds: "{{ vault_start_pause_seconds }}"
   when:
