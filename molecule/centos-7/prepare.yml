@@ -23,10 +23,18 @@
 
   tasks:
     - name: Add systemd-backports repo
-      community.general.copr:
-        name: jsynacek/systemd-backports-for-centos-7
+      yum_repository:
+        name: "copr:copr.fedorainfracloud.org:jsynacek:systemd-backports-for-centos-7"
+        description: "Copr repo for systemd-backports-for-centos-7 owned by jsynacek"
+        baseurl: "https://download.copr.fedorainfracloud.org/results/jsynacek/systemd-backports-for-centos-7/epel-7-$basearch/"
+        file: jsynacek-systemd-backports-for-centos-7-epel-7
+        skip_if_unavailable: true
+        gpgcheck: true
+        gpgcakey: https://download.copr.fedorainfracloud.org/results/jsynacek/systemd-backports-for-centos-7/pubkey.gpg
+        repo_gpgcheck: false
+        enabled: true
 
-    - name: Update systemd  # noqa package-latest
+    - name: Install prerequisites
       package:
         name: systemd
-        state: latest
+        state: present
