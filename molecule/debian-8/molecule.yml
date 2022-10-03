@@ -4,6 +4,7 @@ platforms:
     groups:
       - vault_raft_servers
     image: dokken/debian-8
+    pre_build_image: true
     command: /lib/systemd/systemd
     privileged: true
     capabilities:
@@ -15,6 +16,7 @@ platforms:
     groups:
       - vault_raft_servers
     image: dokken/debian-8
+    pre_build_image: true
     command: /lib/systemd/systemd
     privileged: true
     capabilities:
