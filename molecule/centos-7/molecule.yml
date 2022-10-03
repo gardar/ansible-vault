@@ -4,6 +4,7 @@ platforms:
     groups:
       - vault_raft_servers
     image: milcom/centos7-systemd
+    pre_build_image: true
     privileged: true
     capabilities:
       - SYS_ADMIN
@@ -14,6 +15,7 @@ platforms:
     groups:
       - vault_raft_servers
     image: milcom/centos7-systemd
+    pre_build_image: true
     privileged: true
     capabilities:
       - SYS_ADMIN
