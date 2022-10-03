@@ -29,3 +29,5 @@ provisioner:
       centos-7_repo:
         vault_install_hashi_repo: true
         vault_bin_path: /usr/bin
+  playbooks:
+    prepare: prepare.yml
