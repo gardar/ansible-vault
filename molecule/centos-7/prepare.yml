@@ -26,7 +26,7 @@
       community.general.copr:
         name: jsynacek/systemd-backports-for-centos-7
 
-    - name: Update systemd
+    - name: Update systemd  # noqa package-latest
       package:
         name: systemd
         state: latest
