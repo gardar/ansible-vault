@@ -7,11 +7,7 @@ platforms:
     pre_build_image: true
     command: /lib/systemd/systemd
     privileged: true
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroup_parent: docker.slice
   - name: debian-9_repo
     groups:
       - vault_raft_servers
@@ -19,11 +15,7 @@ platforms:
     pre_build_image: true
     command: /lib/systemd/systemd
     privileged: true
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroup_parent: docker.slice
 
 provisioner:
   inventory:

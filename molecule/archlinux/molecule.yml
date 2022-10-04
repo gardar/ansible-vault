@@ -6,11 +6,7 @@ platforms:
     image: carlodepieri/docker-archlinux-ansible
     command: /lib/systemd/systemd
     privileged: true
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroup_parent: docker.slice
 
 provisioner:
   playbooks:
