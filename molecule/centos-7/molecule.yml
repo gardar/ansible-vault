@@ -4,27 +4,27 @@ platforms:
     groups:
       - vault_raft_servers
     image: dokken/centos-7
-    #  command: /lib/systemd/systemd
+    command: /usr/lib/systemd/systemd
     #    entrypoint: /usr//lib/systemd/systemd
     dockerfile: Dockerfile.j2
-    pre_build_image: true
+    pre_build_image: false
     recreate: true
     privileged: true
     cgroup_parent: docker.slice
     #    tmpfs:
     #      - /run
     #      - /tmp
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-      # volumes:
-      #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    # capabilities:
+    #   - SYS_ADMIN
+    #   - CAP_IPC_LOCK
+    # volumes:
+    #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: centos-7_repo
     groups:
       - vault_raft_servers
     image: dokken/centos-7
-    # entrypoint: /usr/lib/systemd/systemd
+    command: /usr/lib/systemd/systemd
     dockerfile: Dockerfile.j2
     pre_build_image: false
     recreate: true
@@ -33,12 +33,12 @@ platforms:
     # tmpfs:
     #  - /run
     # - /tmp
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-      # volumes:
-      #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    # capabilities:
+    #   - SYS_ADMIN
+    #   - CAP_IPC_LOCK
+    # volumes:
+    #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 provisioner:
   inventory:
