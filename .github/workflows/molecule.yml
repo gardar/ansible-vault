@@ -12,7 +12,7 @@ env:
   PY_COLORS: '1'
 
 jobs:
-  molecule:discover-scenarios:
+  discover-scenarios:
     runs-on: ubuntu-latest
     outputs:
       scenarios: ${{ steps.set-scenarios.outputs.scenarios }}
@@ -27,7 +27,7 @@ jobs:
           export scenarios="[`for x in $(ls -1 molecule -I _tests -I '*.yml'); do echo "'$x'"; done | tr '\n' ',' | sed '$s/,$//'`]"
           echo "::set-output name=scenarios::$scenarios"
 
-  molecule:lint:
+  lint:
     runs-on: ubuntu-latest
     needs:
       - discover-scenarios
@@ -44,7 +44,7 @@ jobs:
           molecule_command: lint
           molecule_args: --scenario-name ${{ matrix.scenario }}
 
-  molecule:test:
+  test:
     needs:
       - lint
       - discover-scenarios
