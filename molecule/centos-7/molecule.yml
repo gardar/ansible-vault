@@ -14,12 +14,12 @@ platforms:
     #    tmpfs:
     #      - /run
     #      - /tmp
-    #capabilities:
-    #  - SYS_ADMIN
-    #  - CAP_IPC_LOCK
-    #volumes:
-    #  # - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    #  - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    # capabilities:
+    #   - SYS_ADMIN
+    #   - CAP_IPC_LOCK
+    # volumes:
+    #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: centos-7_repo
     groups:
       - vault_raft_servers
@@ -33,12 +33,12 @@ platforms:
     # tmpfs:
     #  - /run
     # - /tmp
-    #capabilities:
-    #  - SYS_ADMIN
-    #  - CAP_IPC_LOCK
-    #volumes:
-    #  # - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    #  - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    # capabilities:
+    #   - SYS_ADMIN
+    #   - CAP_IPC_LOCK
+    # volumes:
+    #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 provisioner:
   inventory:
