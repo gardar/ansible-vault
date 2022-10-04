@@ -26,14 +26,14 @@ platforms:
     dockerfile: Dockerfile.j2
     pre_build_image: false
     privileged: true
-    #tmpfs:
+    # tmpfs:
       #  - /run
-      #- /tmp
+      # - /tmp
     capabilities:
       - SYS_ADMIN
       - CAP_IPC_LOCK
     volumes:
-      #- /sys/fs/cgroup:/sys/fs/cgroup:rw
+      # - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 provisioner:
