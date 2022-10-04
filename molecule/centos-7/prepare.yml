@@ -30,7 +30,7 @@
         file: jsynacek-systemd-backports-for-centos-7-epel-7
         skip_if_unavailable: true
         gpgcheck: true
-        gpgcakey: https://download.copr.fedorainfracloud.org/results/jsynacek/systemd-backports-for-centos-7/pubkey.gpg
+        gpgkey: https://download.copr.fedorainfracloud.org/results/jsynacek/systemd-backports-for-centos-7/pubkey.gpg
         repo_gpgcheck: false
         enabled: true
 
