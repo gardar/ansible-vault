@@ -10,13 +10,13 @@ platforms:
     pre_build_image: true
     recreate: true
     privileged: true
-    cgroup_parent: "docker.slice"
+    cgroup_parent: docker.slice
     #    tmpfs:
     #      - /run
     #      - /tmp
-    # capabilities:
-    #   - SYS_ADMIN
-    #   - CAP_IPC_LOCK
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
     # volumes:
     #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
     #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -29,13 +29,13 @@ platforms:
     pre_build_image: false
     recreate: true
     privileged: true
-    cgroup_parent: "docker.slice"
+    cgroup_parent: docker.slice
     # tmpfs:
     #  - /run
     # - /tmp
-    # capabilities:
-    #   - SYS_ADMIN
-    #   - CAP_IPC_LOCK
+    capabilities:
+      - SYS_ADMIN
+      - CAP_IPC_LOCK
     # volumes:
     #   # - /sys/fs/cgroup:/sys/fs/cgroup:rw
     #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
