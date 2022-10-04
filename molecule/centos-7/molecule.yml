@@ -27,8 +27,8 @@ platforms:
     pre_build_image: false
     privileged: true
     # tmpfs:
-      #  - /run
-      # - /tmp
+    #  - /run
+    # - /tmp
     capabilities:
       - SYS_ADMIN
       - CAP_IPC_LOCK
