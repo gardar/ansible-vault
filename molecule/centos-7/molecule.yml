@@ -10,15 +10,16 @@ platforms:
     pre_build_image: true
     recreate: true
     privileged: true
+    cgroup_parent: "docker.slice"
     #    tmpfs:
     #      - /run
     #      - /tmp
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-    volumes:
-      # - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    #capabilities:
+    #  - SYS_ADMIN
+    #  - CAP_IPC_LOCK
+    #volumes:
+    #  # - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    #  - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: centos-7_repo
     groups:
       - vault_raft_servers
@@ -28,15 +29,16 @@ platforms:
     pre_build_image: false
     recreate: true
     privileged: true
+    cgroup_parent: "docker.slice"
     # tmpfs:
     #  - /run
     # - /tmp
-    capabilities:
-      - SYS_ADMIN
-      - CAP_IPC_LOCK
-    volumes:
-      # - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    #capabilities:
+    #  - SYS_ADMIN
+    #  - CAP_IPC_LOCK
+    #volumes:
+    #  # - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    #  - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 provisioner:
   inventory:
