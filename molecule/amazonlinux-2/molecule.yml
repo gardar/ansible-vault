@@ -8,6 +8,7 @@ platforms:
     command: /lib/systemd/systemd
     privileged: true
     cgroup_parent: docker.slice
+    cgroupns_mode: host
   - name: amazonlinux-2_repo
     groups:
       - vault_raft_servers
@@ -16,6 +17,7 @@ platforms:
     command: /lib/systemd/systemd
     privileged: true
     cgroup_parent: docker.slice
+    cgroupns_mode: host
 
 provisioner:
   inventory:
